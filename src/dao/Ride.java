@@ -1,9 +1,11 @@
 package dao;
 
 import constants.City;
+import constants.VehicleType;
 
 import java.util.Objects;
 
+//TODO: if user gives mp-41 as activa but offers rides as mp-41 bolero
 public class Ride{
   private final String ownerName;
   private final City originCity;
@@ -11,12 +13,16 @@ public class Ride{
   private final Integer availableSeats;
   private final String vehicleNumber;
 
-  public Ride(String ownerName, City originCity, City destinationCity, Integer availableSeats, String vehicleNumber){
+  private final VehicleType vehicleType;
+
+  public Ride(String ownerName, City originCity, City destinationCity, Integer availableSeats, String vehicleNumber,
+      VehicleType vehicleType){
     this.ownerName = ownerName;
     this.originCity = originCity;
     this.destinationCity = destinationCity;
     this.availableSeats = availableSeats;
     this.vehicleNumber = vehicleNumber;
+    this.vehicleType = vehicleType;
   }
 
   public String getOwnerName(){
@@ -37,6 +43,10 @@ public class Ride{
 
   public String getVehicleNumber(){
     return vehicleNumber;
+  }
+
+  public VehicleType getVehicleType(){
+    return vehicleType;
   }
 
   @Override

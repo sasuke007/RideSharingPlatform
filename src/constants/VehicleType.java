@@ -1,9 +1,10 @@
 package constants;
 
-private enum VehicleType{
+public enum VehicleType{
   BALENO,
   XUV,
   ACTIVA,
   POLO,
-  SWIFT
+  SWIFT,
+  NONE;
 }
