@@ -1,18 +1,15 @@
 package dao;
 
+import constants.VehicleType;
+
+import java.util.Objects;
+
 public class Vehicle{
 
   private final String ownerName;
   private final VehicleType vehicleType;
   private final String number;
 
-  private enum VehicleType{
-    BALENO,
-    XUV,
-    ACTIVA,
-    POLO,
-    SWIFT
-  }
 
   public String getOwnerName(){
     return ownerName;
@@ -32,4 +29,19 @@ public class Vehicle{
     return number;
   }
 
+  @Override
+  public boolean equals(Object o){
+    if(this == o){
+      return true;
+    }
+    if(!(o instanceof Vehicle vehicle)){
+      return false;
+    }
+    return getNumber().equals(vehicle.getNumber());
+  }
+
+  @Override
+  public int hashCode(){
+    return Objects.hash(getOwnerName(), getVehicleType(), getNumber());
+  }
 }

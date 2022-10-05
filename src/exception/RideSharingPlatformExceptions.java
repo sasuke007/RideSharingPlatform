@@ -1,6 +1,6 @@
 package exception;
 
-public class RideSharingPlatformExceptions extends RuntimeException{
+public class RideSharingPlatformExceptions extends Exception{
   private String error;
   private String message;
 
