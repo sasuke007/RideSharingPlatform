@@ -1,11 +1,11 @@
 package actions;
 
 import dao.Ride;
-import dao.RiderDetails;
+import dao.TravellerDetails;
 
 import java.util.List;
 
 public interface FindRidesStrategy{
 
-  public List<Ride> findRides(List<Ride> offeredRides, RiderDetails riderDetails);
+  public List<Ride> findRides(List<Ride> offeredRides, TravellerDetails travellerDetails);
 }

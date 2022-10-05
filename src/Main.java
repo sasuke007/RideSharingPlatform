@@ -31,5 +31,6 @@ public class Main{
     UserOperations.selectRide("Rohan", City.HYDERABAD, City.BANGALORE, 1, SelectionStrategy.PREFERRED_VEHICLE,
         VehicleType.BALENO);
     UserOperations.selectRide("Shashank",City.HYDERABAD,City.BANGALORE,1,SelectionStrategy.PREFERRED_VEHICLE,VehicleType.POLO);
+    UserOperations.printStats();
   }
 }

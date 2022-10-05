@@ -4,8 +4,10 @@ import dao.User;
 import dao.Vehicle;
 import exception.UserAlreadyPresentException;
 import exception.VehicleAlreadyPresentException;
+import util.DisplaySeperators;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class UserActions{
@@ -43,5 +45,11 @@ public class UserActions{
     return userMapping.getOrDefault(name, null);
   }
 
-
+  public void printStats(){
+    for(Map.Entry<String, User> user : userMapping.entrySet()){
+      System.out.printf("%s: %d Taken, %d Offered.%n", user.getKey(), user.getValue().getTakenRides(),
+          user.getValue().getOfferedRides());
+    }
+    DisplaySeperators.displayDashedLines();
+  }
 }

@@ -1,9 +1,7 @@
 package actions;
 
-import constants.City;
-import constants.VehicleType;
 import dao.Ride;
-import dao.RiderDetails;
+import dao.TravellerDetails;
 import exception.RideAlreadyPresentException;
 
 import java.util.ArrayList;
@@ -49,9 +47,20 @@ public class OfferRidesActions{
     }
   }
 
-  public List<Ride> findRides(RiderDetails riderDetails){
-    List<Ride> possibleRides =
-        findRidesFactory.findRidesStrategy(riderDetails.getSelectionStrategy()).findRides(offeredRides, riderDetails);
-    return possibleRides;
+  public Ride removeRide(String vehicleNumber){
+    Ride ride = null;
+    for(int i = 0; i < offeredRides.size(); ++i){
+      if(offeredRides.get(i).getVehicleNumber().equals(vehicleNumber)){
+        ride = offeredRides.get(i);
+        offeredRides.remove(i);
+        break;
+      }
+    }
+    return ride;
+  }
+
+  public List<Ride> findRides(TravellerDetails travellerDetails){
+    return findRidesFactory.findRidesStrategy(travellerDetails.getSelectionStrategy())
+        .findRides(offeredRides, travellerDetails);
   }
 }

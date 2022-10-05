@@ -4,7 +4,7 @@ import constants.City;
 import constants.SelectionStrategy;
 import constants.VehicleType;
 
-public class RiderDetails{
+public class TravellerDetails{
   private final String travellerName;
   private final City originCity;
   private final City destinationCity;
@@ -14,7 +14,7 @@ public class RiderDetails{
 
   private final VehicleType vehicleType;
 
-  public RiderDetails(String travellerName, City originCity, City destinationCity, Integer seatsRequired,
+  public TravellerDetails(String travellerName, City originCity, City destinationCity, Integer seatsRequired,
       SelectionStrategy selectionStrategy, VehicleType vehicleType){
     this.travellerName = travellerName;
     this.originCity = originCity;

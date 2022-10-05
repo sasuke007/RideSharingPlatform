@@ -1,10 +1,7 @@
 package actions;
 
-import constants.City;
-import constants.SelectionStrategy;
-import constants.VehicleType;
 import dao.Ride;
-import dao.RiderDetails;
+import dao.TravellerDetails;
 
 import java.util.List;
 import java.util.Objects;
@@ -29,10 +26,10 @@ public class SelectRidesActions{
     return selectRidesActions;
   }
 
-  public List<Ride> findRides(RiderDetails riderDetails){
-    List<Ride> possibleRides = offerRidesActions.findRides(riderDetails);
+  public List<Ride> findRides(TravellerDetails travellerDetails){
+    List<Ride> possibleRides = offerRidesActions.findRides(travellerDetails);
     if(!possibleRides.isEmpty()){
-      userActions.getUser(riderDetails.getTravellerName()).incrementTakenRides();
+      userActions.getUser(travellerDetails.getTravellerName()).incrementTakenRides();
     }
     return possibleRides;
   }
