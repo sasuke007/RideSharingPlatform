@@ -3,7 +3,7 @@ package exception;
 import util.DisplaySeperators;
 
 public class RideSharingPlatformExceptions extends Exception{
-  private String error;
+  private final String error;
   private String message;
 
   public RideSharingPlatformExceptions(String message, String error){
@@ -14,7 +14,5 @@ public class RideSharingPlatformExceptions extends Exception{
 
   public void printException(){
     System.out.println("Exception ->  " + error);
-    DisplaySeperators.displayDashedLines();
-    //this.printStackTrace();
   }
 }

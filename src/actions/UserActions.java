@@ -5,6 +5,7 @@ import dao.Vehicle;
 import exception.UserAlreadyPresentException;
 import exception.VehicleAlreadyPresentException;
 import util.DisplaySeperators;
+import util.StringOperation;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,8 @@ import java.util.Objects;
 public class UserActions{
 
   private final HashMap<String, User> userMapping;
+
+  private final VehicleRegistrations vehicleRegistrations;
 
   private static UserActions userActions;
 
@@ -25,6 +28,7 @@ public class UserActions{
 
   private UserActions(){
     userMapping = new HashMap<>();
+    vehicleRegistrations = VehicleRegistrations.getInstance();
   }
 
   public void addUser(String name, User user) throws UserAlreadyPresentException{
@@ -37,7 +41,7 @@ public class UserActions{
   }
 
   public void addVehicle(String ownerName, Vehicle vehicle) throws VehicleAlreadyPresentException{
-    VehicleRegistrations.addVehicle(vehicle.getNumber(), ownerName);
+    vehicleRegistrations.addVehicle(vehicle.getNumber(), ownerName);
     userMapping.get(ownerName).addVehicle(vehicle);
   }
 
