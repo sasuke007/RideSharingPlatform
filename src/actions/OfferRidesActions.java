@@ -16,12 +16,14 @@ public class OfferRidesActions{
 
   private final UserActions userActions;
 
-  private ArrayList<Ride> offeredRides;
+  private final ArrayList<Ride> offeredRides;
 
-  private FindRidesFactory findRidesFactory;
+  private final FindRidesFactory findRidesFactory;
 
   private OfferRidesActions(){
     userActions = UserActions.getInstance();
+    offeredRides = new ArrayList<>();
+    findRidesFactory = FindRidesFactory.getInstance();
   }
 
   public static OfferRidesActions getInstance(){

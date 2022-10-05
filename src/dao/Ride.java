@@ -57,9 +57,7 @@ public class Ride{
     if(!(o instanceof Ride ride)){
       return false;
     }
-    return getOriginCity() == ride.getOriginCity() &&
-        getDestinationCity() == ride.getDestinationCity() &&
-        getVehicleNumber().equals(ride.getVehicleNumber());
+    return getVehicleNumber().equals(ride.getVehicleNumber());
   }
 
   @Override

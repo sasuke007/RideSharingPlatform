@@ -1,5 +1,7 @@
 package exception;
 
+import util.DisplaySeperators;
+
 public class RideSharingPlatformExceptions extends Exception{
   private String error;
   private String message;
@@ -12,6 +14,7 @@ public class RideSharingPlatformExceptions extends Exception{
 
   public void printException(){
     System.out.println("Exception ->  " + error);
-    this.printStackTrace();
+    DisplaySeperators.displayDashedLines();
+    //this.printStackTrace();
   }
 }

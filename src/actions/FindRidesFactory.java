@@ -15,6 +15,7 @@ public class FindRidesFactory{
   private final PreferredVehicleStrategy preferredVehicleStrategy;
 
   private FindRidesFactory(){
+    ridesStrategyMap = new HashMap<>();
     this.mostVacantStrategy = MostVacantStrategy.getInstance();
     this.preferredVehicleStrategy = PreferredVehicleStrategy.getInstance();
     initialize();
