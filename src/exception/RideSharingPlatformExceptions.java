@@ -13,6 +13,6 @@ public class RideSharingPlatformExceptions extends Exception{
   }
 
   public void printException(){
-    System.out.println("Exception ->  " + error);
+    System.out.println(error);
   }
 }

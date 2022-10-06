@@ -60,7 +60,7 @@ public class UserOperations{
       System.out.printf("A ride with %s vehicle number is already offering a ride.%n", vehicleNumber);
       DisplaySeperators.displayDashedLines();
     } catch(VehicleOwnershipException e){
-      System.out.printf("This vehicle with %s number is not registered with owner %s.%n",vehicleNumber,ownerName);
+      System.out.printf("This vehicle with %s number is not registered with owner %s.%n", vehicleNumber, ownerName);
       DisplaySeperators.displayDashedLines();
     }
   }
@@ -73,11 +73,9 @@ public class UserOperations{
       final TravellerDetails
           travellerDetails = new TravellerDetails(travellerName, originCity, destinationCity, requiredSeats,
           selectionStrategy, vehicleType);
-      List<Ride> possibleRides = selectRidesActions.findRides(travellerDetails);
-      for(Ride ride : possibleRides){
-        System.out.printf("Hi, %s you can reach from %s to %s via %s , offered by %s having vehicle " +
-                "number %s.%n", travellerName, originCity.name(), destinationCity.name(), ride.getVehicleType(),
-            ride.getOwnerName(), ride.getVehicleNumber());
+      List<List<Ride>> possibleRides = selectRidesActions.findRides(travellerDetails);
+      for(List<Ride> rides : possibleRides){
+        printRide(rides, travellerDetails);
       }
       if(possibleRides.isEmpty()){
         System.out.printf("Sorry %s, there are no rides available for this route currently!.%n", travellerName);
@@ -86,6 +84,15 @@ public class UserOperations{
     } catch(TravellerNotRegisteredException e){
       System.out.printf("Traveller with name does not exist.%n");
     }
+  }
+
+  private static void printRide(List<Ride> ride, TravellerDetails travellerDetails){
+    System.out.printf("You can reach from %s to %s via this route ", travellerDetails.getOriginCity(),
+        travellerDetails.getDestinationCity());
+    for(Ride node : ride){
+      System.out.print(node.getOriginCity().name() + " -> " + node.getDestinationCity());
+    }
+    System.out.println();
   }
 
   public static void printStats(){
@@ -99,9 +106,8 @@ public class UserOperations{
       System.out.printf("Vehicle with %s number, owned by %s going from %s to %s has been removed successfully.%n",
           vehicleNumber, ride.getOwnerName(), ride.getOriginCity().name(), ride.getDestinationCity().name());
       DisplaySeperators.displayDashedLines();
-    }
-    else{
-      System.out.printf("Vehicle with %s number, does not exist.%n",vehicleNumber);
+    } else{
+      System.out.printf("Vehicle with %s number, does not exist.%n", vehicleNumber);
     }
   }
 }

@@ -16,12 +16,12 @@ public class OfferRidesActions{
 
   private final ArrayList<Ride> offeredRides;
 
-  private final FindRidesFactory findRidesFactory;
+  private final OfferRidesStrategy offerRidesStrategy;
 
   private OfferRidesActions(){
     userActions = UserActions.getInstance();
     offeredRides = new ArrayList<>();
-    findRidesFactory = FindRidesFactory.getInstance();
+    offerRidesStrategy = IndirectOfferRidesStrategy.getInstance();
   }
 
   public static OfferRidesActions getInstance(){
@@ -32,35 +32,15 @@ public class OfferRidesActions{
   }
 
   public void offerRide(Ride ride) throws RideAlreadyPresentException{
-    validateNewRide(ride);
-    offeredRides.add(ride);
+    offerRidesStrategy.offerRide(ride);
     userActions.getUser(ride.getOwnerName()).incrementOfferedRides();
   }
 
-  private void validateNewRide(Ride newRide) throws RideAlreadyPresentException{
-    for(Ride ride : offeredRides){
-      if(ride.equals(newRide)){
-        throw new RideAlreadyPresentException("Ride Already Present!", String.format("Ride with vehicle number %s is " +
-                "already present as on ride from %s origin city to %s destination city", ride.getVehicleNumber(),
-            ride.getOriginCity().name(), ride.getDestinationCity().name()));
-      }
-    }
-  }
-
   public Ride removeRide(String vehicleNumber){
-    Ride ride = null;
-    for(int i = 0; i < offeredRides.size(); ++i){
-      if(offeredRides.get(i).getVehicleNumber().equals(vehicleNumber)){
-        ride = offeredRides.get(i);
-        offeredRides.remove(i);
-        break;
-      }
-    }
-    return ride;
+    return offerRidesStrategy.removeRide(vehicleNumber);
   }
 
-  public List<Ride> findRides(TravellerDetails travellerDetails){
-    return findRidesFactory.findRidesStrategy(travellerDetails.getSelectionStrategy())
-        .findRides(offeredRides, travellerDetails);
+  public List<List<Ride> > findRides(TravellerDetails travellerDetails){
+    return offerRidesStrategy.findRides(travellerDetails);
   }
 }

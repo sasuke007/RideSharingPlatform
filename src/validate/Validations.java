@@ -20,14 +20,14 @@ public class Validations{
   public static void checkTravellerRegistration(String travellerName) throws TravellerNotRegisteredException{
     if(Objects.isNull(userActions.getUser(travellerName))){
       throw new TravellerNotRegisteredException(String.format("Traveller with name %s is not registered. Please " +
-          "register first.", travellerName), "Traveller not Registered");
+          "register first.", travellerName), "Traveller not Registered.");
     }
   }
 
   public static void checkVehicleIsRegisteredWithOwner(Ride ride) throws VehicleOwnershipException{
     String owner = vehicleRegistrations.getOwner(ride.getVehicleNumber());
     if(Objects.isNull(owner) || !ride.getOwnerName().equals(owner)){
-      throw new VehicleOwnershipException(String.format("Vehicle with %s number is not registered with %s owner",
+      throw new VehicleOwnershipException(String.format("Vehicle with %s number is not registered with %s owner.",
           ride.getVehicleNumber(), ride.getOwnerName()),
           "Vehicle not registered under owner.");
     }

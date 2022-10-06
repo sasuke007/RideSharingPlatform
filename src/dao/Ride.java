@@ -5,7 +5,6 @@ import constants.VehicleType;
 
 import java.util.Objects;
 
-//TODO: if user gives mp-41 as activa but offers rides as mp-41 bolero
 public class Ride{
   private final String ownerName;
   private final City originCity;

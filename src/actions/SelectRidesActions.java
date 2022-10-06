@@ -26,8 +26,8 @@ public class SelectRidesActions{
     return selectRidesActions;
   }
 
-  public List<Ride> findRides(TravellerDetails travellerDetails){
-    List<Ride> possibleRides = offerRidesActions.findRides(travellerDetails);
+  public List<List<Ride> > findRides(TravellerDetails travellerDetails){
+    List<List<Ride>> possibleRides = offerRidesActions.findRides(travellerDetails);
     if(!possibleRides.isEmpty()){
       userActions.getUser(travellerDetails.getTravellerName()).incrementTakenRides();
     }

@@ -3,7 +3,6 @@ package actions;
 import dao.Ride;
 import dao.TravellerDetails;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,19 +21,12 @@ public class PreferredVehicleStrategy implements FindRidesStrategy{
   }
 
   @Override
-  public List<Ride> findRides(List<Ride> offeredRides, TravellerDetails travellerDetails){
-    List<Ride> possibleRides = new ArrayList<>();
-    for(Ride ride : offeredRides){
-      if(check(ride, travellerDetails)){
-        possibleRides.add(ride);
-      }
-    }
+  public List<List<Ride>> findBestRides(List<List<Ride>> possibleRides){
     return possibleRides;
   }
 
-  private boolean check(Ride ride, TravellerDetails travellerDetails){
-    return ride.getOriginCity().equals(travellerDetails.getOriginCity()) &&
-        ride.getDestinationCity().equals(travellerDetails.getDestinationCity()) &&
-        ride.getVehicleType().equals(travellerDetails.getVehicleType());
+  @Override
+  public boolean check(Ride ride, TravellerDetails travellerDetails){
+    return ride.getVehicleType().equals(travellerDetails.getVehicleType());
   }
 }
